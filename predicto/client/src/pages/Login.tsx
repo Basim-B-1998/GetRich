@@ -9,7 +9,10 @@ const Login = () => {
 
 const handleLogin = async () => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/auth/login`,
+       { email, password }
+      );
     localStorage.setItem('token', res.data.token);
     setUser(res.data.user);
   } catch (err) {

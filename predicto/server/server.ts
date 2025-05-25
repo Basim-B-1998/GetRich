@@ -3,6 +3,9 @@ import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import authRoutes from './routes/auth.routes'; 
+import questionRoutes from './routes/question.routes';
+import betRoutes from './routes/bet.routes';
+
 
 
 mongoose.connect("mongodb+srv://basimbangalath8075:b4eVjfiTwZdwqahA@cluster11.guuvw6k.mongodb.net/")
@@ -31,6 +34,8 @@ app.use(cookieParser())
 app.use(express.json())
 
 app.use('/api/auth', authRoutes);
+app.use('/api/questions', questionRoutes);
+app.use('/api/bets', betRoutes);
 
 
 app.listen(PORT,()=>{console.log(`server is running on port ${PORT}`);
