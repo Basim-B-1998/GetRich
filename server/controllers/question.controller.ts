@@ -30,7 +30,8 @@ export const resolveQuestion = async (req: Request, res: Response) => {
 
     const question = await Question.findById(questionId);
     if (!question || question.status !== 'open') {
-      return res.status(400).json({ message: 'Invalid or already resolved question' });
+       res.status(400).json({ message: 'Invalid or already resolved question' });
+       return
     }
 
     question.status = 'resolved';

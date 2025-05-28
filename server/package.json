@@ -2,15 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "scripts": {
-<<<<<<< HEAD
-    "start": "node server.js",
-  "dev": "nodemon server.js"
-=======
-    "start": "server.ts",
+    "start": "node server.ts",
     "dev": "nodemon server.ts"
->>>>>>> 9a033e0 (wallet remainig logic and betting result logic)
   },
   "keywords": [],
   "author": "",
@@ -18,21 +13,12 @@
   "type": "commonjs",
   "dependencies": {
     "bcrypt": "^6.0.0",
-<<<<<<< HEAD
-=======
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",
->>>>>>> 9a033e0 (wallet remainig logic and betting result logic)
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-<<<<<<< HEAD
-    "mongoose": "^8.14.3"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
-=======
     "mongoose": "^8.15.0"
   },
   "devDependencies": {
@@ -46,6 +32,6 @@
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
->>>>>>> 9a033e0 (wallet remainig logic and betting result logic)
   }
 }
+

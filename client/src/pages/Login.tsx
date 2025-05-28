@@ -23,59 +23,54 @@ const handleLogin = async () => {
 };
 
 
-  return (
-    <div className="min-h-screen bg-gradient-to-tr from-teal-400 via-cyan-400 to-blue-400
- flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Welcome Back</h2>
-        
-        <div className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-600">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="you@example.com"
-            />
-          </div>
+ return (
+  <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="bg-white p-6 rounded-lg w-full max-w-sm">
+      <h2 className="text-xl font-semibold text-center mb-4 text-gray-800">Welcome Back</h2>
 
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-600">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="••••••••"
-            />
-          </div>
-
-          <button
-            onClick={handleLogin}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition-colors"
-          >
-            Login
-          </button>
-           <p className="text-center text-sm text-gray-600">
-            Don’t have an account?{' '}
-            <Link to="/register" className="text-blue-500 hover:underline">
-              Register
-            </Link>
-          </p>
+      <div className="space-y-4">
+        <div>
+          <label htmlFor="email" className="block text-sm text-gray-700">Email</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            className="w-full mt-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="you@example.com"
+          />
         </div>
+
+        <div>
+          <label htmlFor="password" className="block text-sm text-gray-700">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            className="w-full mt-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="••••••••"
+          />
+        </div>
+
+        <button
+          onClick={handleLogin}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded"
+        >
+          Login
+        </button>
+
+        <p className="text-center text-sm text-gray-600">
+          Don’t have an account?{' '}
+          <Link to="/register" className="text-blue-500 hover:underline">
+            Register
+          </Link>
+        </p>
       </div>
     </div>
-  );
-};
-
+  </div>
+);
+}
 
 
 
