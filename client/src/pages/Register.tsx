@@ -20,86 +20,74 @@ export default function Register() {
     }
   };
 
+ 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-purple-300 via-pink-300 to-yellow-300 flex items-center justify-center px-6 py-12">
-      <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl max-w-lg w-full p-10 relative overflow-hidden">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center tracking-widest">
-          Join <span className="text-pink-500">Probo</span>
-        </h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+          Register
+        </h2>
 
         <form
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
             handleRegister();
           }}
-          className="space-y-8"
+          className="space-y-4"
         >
-          <div className="relative">
-            <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-              required
-              className="peer w-full bg-transparent border-b-2 border-gray-300 focus:border-pink-500 outline-none py-3 text-lg placeholder-transparent"
-              placeholder="Username"
-            />
-            <label
-              htmlFor="username"
-              className="absolute left-0 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:text-pink-500 peer-focus:text-sm cursor-text"
-            >
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
               Username
             </label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              placeholder="jack"
+            />
           </div>
 
-          {/* New email input */}
-          <div className="relative">
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-              className="peer w-full bg-transparent border-b-2 border-gray-300 focus:border-pink-500 outline-none py-3 text-lg placeholder-transparent"
-              placeholder="Email"
-            />
-            <label
-              htmlFor="email"
-              className="absolute left-0 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:text-pink-500 peer-focus:text-sm cursor-text"
-            >
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
               Email
             </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+               placeholder="you@example.com"
+           />
           </div>
 
-          <div className="relative">
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              required
-              className="peer w-full bg-transparent border-b-2 border-gray-300 focus:border-pink-500 outline-none py-3 text-lg placeholder-transparent"
-              placeholder="Password"
-            />
-            <label
-              htmlFor="password"
-              className="absolute left-0 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:text-pink-500 peer-focus:text-sm cursor-text"
-            >
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
               Password
             </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              placeholder="••••••••"
+           />
           </div>
 
           <button
             type="submit"
-            className="w-full py-4 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 text-white font-extrabold text-lg shadow-lg hover:shadow-pink-400 transition-shadow"
+            className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition"
           >
             Register
           </button>
         </form>
 
-        <p className="mt-6 text-center text-gray-600">
-          Already registered?{' '}
-          <Link to="/login" className="text-pink-500 font-semibold hover:underline">
+        <p className="text-sm text-center text-gray-600 mt-4">
+          Already registered?{" "}
+          <Link to="/login" className="text-blue-600 hover:underline">
             Login here
           </Link>
         </p>

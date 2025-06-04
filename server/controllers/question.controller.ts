@@ -8,6 +8,10 @@ export const createQuestion = async (req: Request, res: Response) => {
     const { questionText } = req.body;
     const question = new Question({ questionText });
     await question.save();
+
+      // Emit to all clients
+    io.emit('new_question', question);
+
     res.status(201).json(question);
   } catch (err) {
     res.status(500).json({ error: 'Failed to create question' });
@@ -34,8 +38,17 @@ export const resolveQuestion = async (req: Request, res: Response) => {
        return
     }
 
-    question.status = 'resolved';
-    question.correctOption = correctOption;
+       //  Notify all clients
+    io.emit('question_resolved', {
+      questionId: question._id,
+      correctOption,
+      winners: winners.map(w => w.userId)
+    });
+
+       res.status(200).json({ message: 'Question resolved' });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to resolve question' });
+  }
 
     // Get all winning bets
     const winners = question.totalBets.filter(bet => bet.choice === correctOption);
@@ -46,8 +59,8 @@ export const resolveQuestion = async (req: Request, res: Response) => {
       const user = await User.findById(winner.userId);
       if (!user) continue;
 
-      const userBet = user.bets.find(b => b.questionId.equals(question._id));
-      if (userBet) {
+      const userBet = user.bets.find(b => b.questionId.equals(question._id as mongoose.Types.ObjectId));
+       if (userBet) {
         const payout = (winner.amount / totalWinningAmount) * totalPool;
         user.walletBalance += Math.floor(payout); // Floor to avoid decimals
         userBet.status = 'won';
@@ -62,7 +75,7 @@ export const resolveQuestion = async (req: Request, res: Response) => {
       const user = await User.findById(loser.userId);
       if (!user) continue;
 
-      const userBet = user.bets.find(b => b.questionId.equals(question._id));
+      const userBet = user.bets.find(b => b.questionId.equals(question._id as mongoose.Types.ObjectId));
       if (userBet) {
         userBet.status = 'lost';
       }

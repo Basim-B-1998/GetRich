@@ -13,6 +13,17 @@ export const placeBet = async (req: Request, res: Response): Promise<void> => {
     if (!user){
       res.status(404).json({ message: 'User not found' });
     return
+
+    // 🔥 Notify the user who placed the bet
+    io.to(req.user!.id).emit('bet_placed', {
+      newBalance: user.walletBalance,
+      bet: { questionId, choice, amount }
+    });
+
+    res.status(200).json({ message: 'Bet placed', wallet: user.walletBalance });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to place bet' });
+  }
   }
 
     const question = await Question.findById(questionId);

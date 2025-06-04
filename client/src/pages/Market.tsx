@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useSocket } from '../context/SocketContext';
 
 interface Question {
   _id: string;
@@ -10,31 +10,48 @@ interface Question {
 }
 
 const Market = () => {
+  const socket = useSocket();
   const [questions, setQuestions] = useState<Question[]>([]);
 
   useEffect(() => {
+    // Initial fetch
     axios.get(`${import.meta.env.VITE_API_URL}/questions/active`)
       .then(res => setQuestions(res.data));
-  }, []);
 
-const handleBet = async (questionId: string, choice: string) => {
-  const amount = parseInt(prompt(`Enter amount to bet on ${choice}`) || '0');
-  if (!amount) return;
+    // 🔥 Listen for new questions
+    socket?.on('new_question', (newQuestion: Question) => {
+      setQuestions(prev => [...prev, newQuestion]);
+    });
 
-  const token = localStorage.getItem('token');
-  try {
-    const res = await axios.post(
-      `${import.meta.env.VITE_API_URL}/bets`,
-      { questionId, choice, amount },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    alert('Bet placed! New wallet balance: ' + res.data.wallet);
-  } catch (err: any) {
-    alert(err.response?.data?.message || 'Bet failed');
-  }
-};
+    // 🔥 Listen for resolved questions
+    socket?.on('question_resolved', ({ questionId }: { questionId: string }) => {
+      setQuestions(prev => prev.filter(q => q._id !== questionId));
+    });
 
- return (
+    return () => {
+      socket?.off('new_question');
+      socket?.off('question_resolved');
+    };
+  }, [socket]);
+
+  const handleBet = async (questionId: string, choice: string) => {
+    const amount = parseInt(prompt(`Enter amount to bet on ${choice}`) || '0');
+    if (!amount) return;
+
+    const token = localStorage.getItem('token');
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/bets`,
+        { questionId, choice, amount },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert('Bet placed! New wallet balance: ' + res.data.wallet);
+    } catch (err: any) {
+      alert(err.response?.data?.message || 'Bet failed');
+    }
+  };
+
+  return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-white py-10 px-4">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-10 text-gray-800">
@@ -71,7 +88,6 @@ const handleBet = async (questionId: string, choice: string) => {
     </div>
   );
 };
-
 
 
 //   return (

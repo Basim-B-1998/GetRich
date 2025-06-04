@@ -1,14 +1,11 @@
-import { useState } from "react"
+import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom"; // Add this import
 import Logo from '../assets/logo.png'; 
-
-
-
 
 type Props = {}
 
 const Navbar = (props: Props) => {
-
   return (
     <div className="flex items-center justify-between fixed top-0 z-30 w-full ">
       <div className="flex items-center justify-between mx-auto w-5/6">
@@ -27,8 +24,9 @@ const Navbar = (props: Props) => {
             </div>
             {/*right of right side*/}
             <div className="flex items-center justify-between gap-8">
-              <p className="cursor-pointer">Home</p>
-              <p className="cursor-pointer">Portfolio</p>
+              <Link to="/" className="cursor-pointer">Home</Link>
+              <Link to="/dashboard" className="cursor-pointer">Dashboard</Link> {/* Added here */}
+              <Link to="/portfolio" className="cursor-pointer">Portfolio</Link>
               <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out">
                 Login/Signup
               </button>

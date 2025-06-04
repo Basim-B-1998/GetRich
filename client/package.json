@@ -1,54 +1,36 @@
 {
-<<<<<<< HEAD
-  "name": "getrich",
-=======
   "name": "predicto",
->>>>>>> 9a033e0 (wallet remainig logic and betting result logic)
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-<<<<<<< HEAD
-    "build": "vite build",
-=======
     "build": "tsc -b && vite build",
->>>>>>> 9a033e0 (wallet remainig logic and betting result logic)
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-=======
     "@heroicons/react": "^2.2.0",
-    "@tailwindcss/vite": "^4.1.7",
+    "@tailwindcss/vite": "^4.1.8",
     "axios": "^1.9.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0",
-    "tailwindcss": "^4.1.7"
->>>>>>> 9a033e0 (wallet remainig logic and betting result logic)
+    "socket.io-client": "^4.8.1",
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-<<<<<<< HEAD
-=======
     "@types/react-router-dom": "^5.3.3",
->>>>>>> 9a033e0 (wallet remainig logic and betting result logic)
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
-<<<<<<< HEAD
-=======
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
->>>>>>> 9a033e0 (wallet remainig logic and betting result logic)
     "vite": "^6.3.5"
   }
 }
